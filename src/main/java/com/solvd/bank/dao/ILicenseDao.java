@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface ILicenseDao {
+import com.solvd.bank.models.LicenseModel;
+
+public interface ILicenseDao extends IBaseDao<LicenseModel>{
 }

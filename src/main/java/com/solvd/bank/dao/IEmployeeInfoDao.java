@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface IEmployeeInfoDao {
+import com.solvd.bank.models.EmployeeInfoModel;
+
+public interface IEmployeeInfoDao extends IBaseDao<EmployeeInfoModel>{
 }

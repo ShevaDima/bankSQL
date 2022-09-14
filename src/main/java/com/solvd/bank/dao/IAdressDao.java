@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface IAdressDao {
+import com.solvd.bank.models.AdressModel;
+
+public interface IAdressDao extends IBaseDao<AdressModel>{
 }

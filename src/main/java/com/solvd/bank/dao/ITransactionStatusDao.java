@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface ITransactionStatusDao {
+import com.solvd.bank.models.TransactionStatusModel;
+
+public interface ITransactionStatusDao extends IBaseDao<TransactionStatusModel>{
 }

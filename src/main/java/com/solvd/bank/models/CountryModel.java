@@ -30,7 +30,7 @@ public class CountryModel {
 
     @Override
     public String toString() {
-        return "com.solvd.bank.models.CountryModel{" +
+        return "CountryModel{" +
                 "id=" + id +
                 ", country='" + country + '\'' +
                 '}';

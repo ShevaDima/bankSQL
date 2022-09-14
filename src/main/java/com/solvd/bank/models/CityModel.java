@@ -52,7 +52,7 @@ public class CityModel {
 
     @Override
     public String toString() {
-        return "com.solvd.bank.models.CityModel{" +
+        return "CityModel{" +
                 "id=" + id +
                 ", city='" + city + '\'' +
                 ", countryId=" + countryId +

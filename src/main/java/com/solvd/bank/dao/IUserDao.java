@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface IUserDao {
+import com.solvd.bank.models.UserModel;
+
+public interface IUserDao extends IBaseDao<UserModel>{
 }

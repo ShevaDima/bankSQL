@@ -1,4 +1,6 @@
 package com.solvd.bank.dao;
 
-public interface ICardTypeDao {
+import com.solvd.bank.models.CardTypeModel;
+
+public interface ICardTypeDao extends IBaseDao<CardTypeModel>{
 }
