@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Books>
-    <Book id="1">
-        <title>Harry Potter</title>
-        <author>J. K. Rowling</author>
-        <language>English</language>
-    </Book>
-    <Book id="2">
-        <title>The Little Prince</title>
-        <author>Antoine de Saint-Exupéry</author>
-        <language>French</language>
-    </Book>
-    <Book id="3">
-        <title>Kobzar</title>
-        <author>Taras Shevchenko</author>
-        <language>Ukrainian</language>
-    </Book>
-</Books>
+<Book id="1">
+    <title>Harry Potter</title>
+    <author>J. K. Rowling</author>
+    <language>English</language>
+</Book>

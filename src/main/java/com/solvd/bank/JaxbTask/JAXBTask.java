@@ -25,7 +25,7 @@ public class JAXBTask {
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            jaxbMarshaller.marshal(book, new File("./book.xml"));
+            jaxbMarshaller.marshal(book, new File("src/main/java/com/solvd/bank/JaxbTask/Book1.xml"));
 
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class JAXBTask {
     private static Book XmlToJaxbObject() {
         try {
             JAXBContext context = JAXBContext.newInstance(Book.class);
-            return (Book) context.createUnmarshaller().unmarshal(new FileReader("./Book.xml"));
+            return (Book) context.createUnmarshaller().unmarshal(new FileReader("src/main/java/com/solvd/bank/JaxbTask/Book.xml"));
         } catch (JAXBException | IOException e) {
             e.printStackTrace();
         }
