@@ -5,15 +5,17 @@ public class UserModel {
     private String name;
     private String surname;
     private int contactId;
+    private int loginId;
 
     public UserModel() {
     }
 
-    public UserModel(int id, String name, String surname, int contactId) {
+    public UserModel(int id, String name, String surname, int contactId, int loginId) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.contactId = contactId;
+        this.loginId = loginId;
     }
 
     public int getId() {
@@ -48,13 +50,22 @@ public class UserModel {
         this.contactId = contactId;
     }
 
+    public int getLoginId() {
+        return loginId;
+    }
+
+    public void setLoginId(int loginId) {
+        this.loginId = loginId;
+    }
+
     @Override
     public String toString() {
-        return "UserModel{" +
+        return "com.solvd.bank.models.UserModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", contactId=" + contactId +
+                ", loginId=" + loginId +
                 '}';
     }
 }

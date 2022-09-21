@@ -17,13 +17,14 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
     public void create(UserModel obj) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO users(name, surname, contact_id) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users(name, surname, contact_id, login_id) VALUES (?, ?, ?, ?)";
 
         try {
             ps = c.prepareStatement(sql);
             ps.setString(1, obj.getName());
             ps.setString(2, obj.getSurname());
             ps.setInt(3, obj.getContactId());
+            ps.setInt(4, obj.getLoginId());
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
@@ -55,6 +56,7 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
                 m.setName(rs.getString("name"));
                 m.setSurname(rs.getString("surname"));
                 m.setContactId(rs.getInt("contact_id"));
+                m.setContactId(rs.getInt("login_id"));
                 closePreparedStatement(ps);
                 closeResultSet(rs);
                 closeConnection(c);
@@ -96,14 +98,15 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
     public void update(UserModel obj) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE users SET name=?, surname=?, contact_id=? WHERE id=?";
+        String sql = "UPDATE users SET name=?, surname=?, contact_id=?, login_id WHERE id=?";
 
         try {
             ps = c.prepareStatement(sql);
             ps.setString(1, obj.getName());
             ps.setString(2, obj.getSurname());
             ps.setInt(3, obj.getContactId());
-            ps.setInt(4, obj.getId());
+            ps.setInt(4, obj.getLoginId());
+            ps.setInt(5, obj.getId());
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
@@ -117,4 +120,37 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
         closeConnection(c);
     }
 
+    @Override
+    public UserModel getByLoginId(int id) {
+        Connection c = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM users WHERE login_id=?";
+
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                UserModel m = new UserModel();
+                m.setId(rs.getInt("id"));
+                m.setName(rs.getString("name"));
+                m.setSurname(rs.getString("surname"));
+                m.setContactId(rs.getInt("contact_id"));
+                m.setContactId(rs.getInt("login_id"));
+                closePreparedStatement(ps);
+                closeResultSet(rs);
+                closeConnection(c);
+                return m;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closePreparedStatement(ps);
+        closeResultSet(rs);
+        closeConnection(c);
+        return null;
+    }
 }

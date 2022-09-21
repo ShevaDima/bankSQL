@@ -1,8 +1,8 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
 
-import com.solvd.bank.dao.IContactDao;
-import com.solvd.bank.models.ContactModel;
+import com.solvd.bank.dao.ILoginDao;
+import com.solvd.bank.models.LoginModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,24 +11,23 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ContactDao extends AbstractMySqlDao implements IContactDao {
-    private final Logger log = LogManager.getLogger(ContactDao.class);
+public class LoginDao extends AbstractMySqlDao implements ILoginDao {
+    private final Logger log = LogManager.getLogger(LoginDao.class);
 
     @Override
-    public void create(ContactModel obj) {
+    public void create(LoginModel obj) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "INSERT INTO contacts(phone1, phone2, email) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO logins(login, password) VALUES (?, ?)";
 
         try {
             ps = c.prepareStatement(sql);
-            ps.setString(1, obj.getPhone1());
-            ps.setString(2, obj.getPhone2());
-            ps.setString(3, obj.getEmail());
+            ps.setString(1, obj.getLogin());
+            ps.setString(2, obj.getPassword());
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A new contact was inserted successfully!");
+                log.info("A new login was inserted successfully!");
             }
         }
         catch (SQLException e) {
@@ -39,11 +38,11 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
     }
 
     @Override
-    public ContactModel getById(int id) {
+    public LoginModel getById(int id) {
         Connection c = getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM contacts WHERE id=?";
+        String sql = "SELECT * FROM logins WHERE id=?";
 
         try {
             ps = c.prepareStatement(sql);
@@ -51,11 +50,10 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                ContactModel m = new ContactModel();
+                LoginModel m = new LoginModel();
                 m.setId(rs.getInt("id"));
-                m.setPhone1(rs.getString("phone1"));
-                m.setPhone2(rs.getString("phone2"));
-                m.setEmail(rs.getString("email"));
+                m.setLogin(rs.getString("login"));
+                m.setPassword(rs.getString("password"));
                 closePreparedStatement(ps);
                 closeResultSet(rs);
                 closeConnection(c);
@@ -75,7 +73,7 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
     public void remove(int id) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "DELETE FROM contacts WHERE id=?";
+        String sql = "DELETE FROM logins WHERE id=?";
 
         try {
             ps = c.prepareStatement(sql);
@@ -83,7 +81,7 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A contact was deleted successfully!");
+                log.info("A login was deleted successfully!");
             }
         }
         catch (SQLException e) {
@@ -94,21 +92,20 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
     }
 
     @Override
-    public void update(ContactModel obj) {
+    public void update(LoginModel obj) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE contacts SET phone1=?, phone2=?, email=? WHERE id=?";
+        String sql = "UPDATE logins SET login=?, password=? WHERE id=?";
 
         try {
             ps = c.prepareStatement(sql);
-            ps.setString(1, obj.getPhone1());
-            ps.setString(2, obj.getPhone2());
-            ps.setString(3, obj.getEmail());
-            ps.setInt(4, obj.getId());
+            ps.setString(1, obj.getLogin());
+            ps.setString(2, obj.getPassword());
+            ps.setInt(3, obj.getId());
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("An existing contact was updated successfully!");
+                log.info("An existing login was updated successfully!");
             }
         }
         catch (SQLException e) {
@@ -119,23 +116,22 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
     }
 
     @Override
-    public ContactModel getByEmail(String email) {
+    public LoginModel getByLogin(String login) {
         Connection c = getConnection();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM contacts WHERE email=?";
+        String sql = "SELECT * FROM logins WHERE login=?";
 
         try {
             ps = c.prepareStatement(sql);
-            ps.setString(1, email);
+            ps.setString(1, login);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                ContactModel m = new ContactModel();
+                LoginModel m = new LoginModel();
                 m.setId(rs.getInt("id"));
-                m.setPhone1(rs.getString("phone1"));
-                m.setPhone2(rs.getString("phone2"));
-                m.setEmail(rs.getString("email"));
+                m.setLogin(rs.getString("login"));
+                m.setPassword(rs.getString("password"));
                 closePreparedStatement(ps);
                 closeResultSet(rs);
                 closeConnection(c);
