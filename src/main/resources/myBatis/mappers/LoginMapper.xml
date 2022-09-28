@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="src.main.resources.myBatis.mappers.LoginMapper">
+
+    <resultMap id="loginResultMap" type="com.solvd.bank.models.LoginModel" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="login" property="login"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <insert id="create">
+        INSERT INTO logins(login, password) VALUES (#{login}, #{password})
+    </insert>
+
+    <select id="getById" parameterType="int" resultMap="loginResultMap">
+        SELECT * FROM logins WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE logins SET login=#{login}, password=#{password} WHERE id=#{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM logins WHERE id=#{id}
+    </delete>
+
+    <select id="getByLogin" parameterType="string" resultMap="loginResultMap">
+        SELECT * FROM logins WHERE login=#{login}
+    </select>
+
+</mapper>

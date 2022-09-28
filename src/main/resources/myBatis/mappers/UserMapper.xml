@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="src.main.resources.myBatis.mappers.UserMapper">
+
+    <resultMap id="userResultMap" type="com.solvd.bank.models.UserModel" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="surname" property="surname"/>
+        <result column="contact_id" property="contactId"/>
+        <result column="login_id" property="loginId"/>
+    </resultMap>
+
+    <insert id="create">
+        INSERT INTO users(name, surname, contact_id, login_id) VALUES (#{name}, #{surname}, #{contactId}, #{loginId})
+    </insert>
+
+    <select id="getById" parameterType="int" resultMap="userResultMap">
+        SELECT * FROM users WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE users SET name=#{name}, surname=#{surname}, contact_id=#{contactId}, login_id=#{loginId} WHERE id=#{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM users WHERE id=#{id}
+    </delete>
+
+    <select id="getByLoginId" parameterType="int" resultMap="userResultMap">
+        SELECT * FROM users WHERE login_id=#{loginId}
+    </select>
+
+</mapper>

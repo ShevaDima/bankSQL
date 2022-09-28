@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="src.main.resources.myBatis.mappers.ContactMapper">
+
+    <resultMap id="contactResultMap" type="com.solvd.bank.models.ContactModel" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="phone1" property="phone1"/>
+        <result column="phone2" property="phone2"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+    <insert id="create">
+        INSERT INTO contacts(phone1, phone2, email) VALUES (#{phone1}, #{phone2}, #{email})
+    </insert>
+
+    <select id="getById" parameterType="int" resultMap="contactResultMap">
+        SELECT * FROM contacts WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE contacts SET phone1=#{phone1}, phone2=#{phone2}, email=#{email} WHERE id=#{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM contacts WHERE id=#{id}
+    </delete>
+
+    <select id="getByEmail" parameterType="string" resultMap="contactResultMap">
+        SELECT * FROM contacts WHERE email=#{email}
+    </select>
+
+</mapper>
