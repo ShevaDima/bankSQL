@@ -56,7 +56,7 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
                 m.setName(rs.getString("name"));
                 m.setSurname(rs.getString("surname"));
                 m.setContactId(rs.getInt("contact_id"));
-                m.setContactId(rs.getInt("login_id"));
+                m.setLoginId(rs.getInt("login_id"));
                 closePreparedStatement(ps);
                 closeResultSet(rs);
                 closeConnection(c);
@@ -98,7 +98,7 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
     public void update(UserModel obj) {
         Connection c = getConnection();
         PreparedStatement ps = null;
-        String sql = "UPDATE users SET name=?, surname=?, contact_id=?, login_id WHERE id=?";
+        String sql = "UPDATE users SET name=?, surname=?, contact_id=?, login_id=? WHERE id=?";
 
         try {
             ps = c.prepareStatement(sql);
