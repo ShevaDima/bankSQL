@@ -36,8 +36,11 @@ INSERT INTO contacts(phone1, phone2, email)
 VALUES ('1235689', '981205', 'Taha@email.com'), (null, '981205', 'Josefina@email.com'), ('9452004', '555546670', null),
 (null, '99600155', null), (null, null, 'NamrataS@email.com');
 
-INSERT INTO users(name, surname, contact_id)
-VALUES ('Taha', 'Grimwald', 1), ('Josefina', 'Turnus', 2), ('Dileep', 'Margaretha', 3), ('Lelisa', 'Tomislav', 4), ('Namrata', 'Sadbh', 5);
+INSERT INTO logins(login, password)
+VALUES ('Taha1', 'qwerty'), ('Josefina1', 'Qwerty'), ('Dileep15', 'QWERTY123'), ('Lelisa15', '123QWE'), ('Namrata99', '123456');
+
+INSERT INTO users(name, surname, contact_id, login_id)
+VALUES ('Taha', 'Grimwald', 1, 1), ('Josefina', 'Turnus', 2, 2), ('Dileep', 'Margaretha', 3, 3), ('Lelisa', 'Tomislav', 4, 4), ('Namrata', 'Sadbh', 5, 5);
 
 INSERT INTO accounts(user_id, bank_id)
 VALUES (1, 6), (2, 5), (3, 4), (4, 3), (5, 1);
