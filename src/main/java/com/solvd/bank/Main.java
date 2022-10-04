@@ -10,14 +10,7 @@ public class Main {
     private final static Logger log = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-
         BankApp app = new BankApp();
-
         app.setup();
-
-
-
-
-
     }
 }

@@ -45,7 +45,7 @@ public class BankApp {
 
     public UserModel signIn() {
         log.info("Sign In");
-        log.info("Enter your login");
+        log.info("Enter your login (TEST ONLY: login: Namrata99\tpassword: 123456)");
         boolean loginStatus;
         LoginModel loginModel;
         do {
