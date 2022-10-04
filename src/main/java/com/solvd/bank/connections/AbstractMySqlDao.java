@@ -1,4 +1,4 @@
-package com.solvd.bank.dao.jdbc.mysql;
+package com.solvd.bank.connections;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

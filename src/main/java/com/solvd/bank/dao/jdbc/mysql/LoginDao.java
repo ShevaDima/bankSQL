@@ -1,6 +1,7 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.ILoginDao;
 import com.solvd.bank.models.LoginModel;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +28,7 @@ public class LoginDao extends AbstractMySqlDao implements ILoginDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A new login was inserted successfully!");
+//                log.info("A new login was inserted successfully!");
             }
         }
         catch (SQLException e) {

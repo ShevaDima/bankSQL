@@ -1,5 +1,6 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.IAccountDao;
 import com.solvd.bank.models.AccountModel;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +27,7 @@ public class AccountDao extends AbstractMySqlDao implements IAccountDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A new account was inserted successfully!");
+//                log.info("A new account was inserted successfully!");
             }
         }
         catch (SQLException e) {
@@ -105,7 +106,7 @@ public class AccountDao extends AbstractMySqlDao implements IAccountDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("An existing account was updated successfully!");
+//                log.info("An existing account was updated successfully!");
             }
         }
         catch (SQLException e) {
@@ -113,5 +114,38 @@ public class AccountDao extends AbstractMySqlDao implements IAccountDao {
         }
         closePreparedStatement(ps);
         closeConnection(c);
+    }
+
+    @Override
+    public AccountModel getByUserId(int id) {
+        Connection c = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String sql = "SELECT * FROM accounts WHERE user_id=?";
+
+        try {
+            ps = c.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                AccountModel m = new AccountModel();
+                m.setId(rs.getInt("id"));
+                m.setUserId(rs.getInt("user_id"));
+                m.setBankId(rs.getInt("bank_id"));
+                closePreparedStatement(ps);
+                closeResultSet(rs);
+                closeConnection(c);
+                return m;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closePreparedStatement(ps);
+        closeResultSet(rs);
+        closeConnection(c);
+        return null;
     }
 }

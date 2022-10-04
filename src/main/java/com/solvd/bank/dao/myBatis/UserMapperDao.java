@@ -1,5 +1,6 @@
 package com.solvd.bank.dao.myBatis;
 
+import com.solvd.bank.connections.MyBatisConnection;
 import com.solvd.bank.dao.IUserDao;
 import com.solvd.bank.models.UserModel;
 import org.apache.ibatis.session.SqlSession;

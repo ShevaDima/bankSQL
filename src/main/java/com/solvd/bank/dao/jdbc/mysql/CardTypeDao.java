@@ -1,6 +1,8 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.ICardTypeDao;
+import com.solvd.bank.models.BankModel;
 import com.solvd.bank.models.CardTypeModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardTypeDao extends AbstractMySqlDao implements ICardTypeDao {
     private final Logger log = LogManager.getLogger(CardTypeDao.class);
@@ -111,4 +115,35 @@ public class CardTypeDao extends AbstractMySqlDao implements ICardTypeDao {
         closeConnection(c);
     }
 
+    @Override
+    public List<CardTypeModel> getAllCardTypes() {
+        Connection c = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM card_types";
+        List<CardTypeModel> list = new ArrayList<>();
+
+        try {
+            ps = c.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                CardTypeModel cardTypeModel = new CardTypeModel();
+                cardTypeModel.setId(rs.getInt("id"));
+                cardTypeModel.setType(rs.getString("type"));
+                list.add(cardTypeModel);
+            }
+            closePreparedStatement(ps);
+            closeResultSet(rs);
+            closeConnection(c);
+            return list;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closePreparedStatement(ps);
+        closeResultSet(rs);
+        closeConnection(c);
+        return null;
+    }
 }

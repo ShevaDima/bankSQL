@@ -1,6 +1,7 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.IContactDao;
 import com.solvd.bank.models.ContactModel;
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +29,7 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A new contact was inserted successfully!");
+//                log.info("A new contact was inserted successfully!");
             }
         }
         catch (SQLException e) {
@@ -108,7 +109,7 @@ public class ContactDao extends AbstractMySqlDao implements IContactDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("An existing contact was updated successfully!");
+//                log.info("An existing contact was updated successfully!");
             }
         }
         catch (SQLException e) {

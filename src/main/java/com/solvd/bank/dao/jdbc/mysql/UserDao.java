@@ -1,5 +1,6 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.IUserDao;
 import com.solvd.bank.models.UserModel;
 import org.apache.logging.log4j.LogManager;
@@ -28,7 +29,7 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
             int rows = ps.executeUpdate();
 
             if (rows > 0) {
-                log.info("A new user was inserted successfully!");
+//                log.info("A new user was inserted successfully!");
             }
         }
         catch (SQLException e) {
@@ -138,7 +139,7 @@ public class UserDao extends AbstractMySqlDao implements IUserDao {
                 m.setName(rs.getString("name"));
                 m.setSurname(rs.getString("surname"));
                 m.setContactId(rs.getInt("contact_id"));
-                m.setContactId(rs.getInt("login_id"));
+                m.setLoginId(rs.getInt("login_id"));
                 closePreparedStatement(ps);
                 closeResultSet(rs);
                 closeConnection(c);

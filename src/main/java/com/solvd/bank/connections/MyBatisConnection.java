@@ -1,4 +1,4 @@
-package com.solvd.bank.dao.myBatis;
+package com.solvd.bank.connections;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;

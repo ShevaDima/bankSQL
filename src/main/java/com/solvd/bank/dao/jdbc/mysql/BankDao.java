@@ -1,7 +1,9 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.IBankDao;
 import com.solvd.bank.models.BankModel;
+import com.solvd.bank.models.CountryModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BankDao extends AbstractMySqlDao implements IBankDao {
     private final Logger log = LogManager.getLogger(BankDao.class);
@@ -113,5 +117,38 @@ public class BankDao extends AbstractMySqlDao implements IBankDao {
         }
         closePreparedStatement(ps);
         closeConnection(c);
+    }
+
+    @Override
+    public List<BankModel> getAllBanks() {
+        Connection c = getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM banks";
+        List<BankModel> list = new ArrayList<>();
+
+        try {
+            ps = c.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                BankModel bankModel = new BankModel();
+                bankModel.setId(rs.getInt("id"));
+                bankModel.setName(rs.getString("name"));
+                bankModel.setAdressId(rs.getInt("adress_id"));
+                list.add(bankModel);
+            }
+            closePreparedStatement(ps);
+            closeResultSet(rs);
+            closeConnection(c);
+            return list;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closePreparedStatement(ps);
+        closeResultSet(rs);
+        closeConnection(c);
+        return null;
     }
 }

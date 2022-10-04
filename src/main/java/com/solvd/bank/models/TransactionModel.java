@@ -3,14 +3,14 @@ package com.solvd.bank.models;
 public class TransactionModel {
     private int id;
     private String date;
-    private int amount;
+    private String amount;
     private int accountId;
     private int statusId;
 
     public TransactionModel() {
     }
 
-    public TransactionModel(int id, String date, int amount, int accountId, int statusId) {
+    public TransactionModel(int id, String date, String amount, int accountId, int statusId) {
         this.id = id;
         this.date = date;
         this.amount = amount;
@@ -34,11 +34,11 @@ public class TransactionModel {
         this.date = date;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 

@@ -60,73 +60,73 @@ VALUES (1, '2022-01-02 12:05', 2000, 1), (2, '2021-07-13 18:09', 3000, 2), (3, '
 
 
 
-UPDATE users
-SET surname = 'Gilbert'
-WHERE id = 1;
+-- UPDATE users
+-- SET surname = 'Gilbert'
+-- WHERE id = 1;
 
-UPDATE transactions
-SET status_id = 3
-WHERE id = 5;
+-- UPDATE transactions
+-- SET status_id = 3
+-- WHERE id = 5;
 
-UPDATE contacts
-SET phone1 = '777511'
-WHERE id = 5;
+-- UPDATE contacts
+-- SET phone1 = '777511'
+-- WHERE id = 5;
 
-UPDATE licenses
-SET number = 'AI145'
-WHERE id = 5;
+-- UPDATE licenses
+-- SET number = 'AI145'
+-- WHERE id = 5;
 
-UPDATE employee_info
-SET salary = 5000
-WHERE id = 1;
-
-
-
-DELETE FROM users
-WHERE id = 1;
-
-DELETE FROM employees
-WHERE id = 3;
-
-DELETE FROM banks
-WHERE id = 6;
-
-DELETE FROM cards
-WHERE id = 4;
-
-DELETE FROM licenses
-WHERE id = 2;
+-- UPDATE employee_info
+-- SET salary = 5000
+-- WHERE id = 1;
 
 
 
-SELECT * FROM users
-WHERE id > 3;
+-- DELETE FROM users
+-- WHERE id = 1;
 
-SELECT * FROM employees
-WHERE bank_id BETWEEN 2 AND 4;
+-- DELETE FROM employees
+-- WHERE id = 3;
 
-SELECT * FROM banks
-WHERE name LIKE '%o Bank';
+-- DELETE FROM banks
+-- WHERE id = 6;
 
-SELECT * FROM transactions
-WHERE amount > 5000;
+-- DELETE FROM cards
+-- WHERE id = 4;
 
-SELECT position_id, COUNT(id) AS '# of employees' FROM employees
-GROUP BY position_id
-ORDER BY position_id;
-
+-- DELETE FROM licenses
+-- WHERE id = 2;
 
 
-SELECT t1.id, t1.name, t1.surname, t2.phone1, t2.phone2, t2.email FROM users t1
-JOIN contacts t2
-ON t1.contact_id = t2.id;
 
-SELECT t1.name AS 'Bank name', t2.name AS 'Employee name', t2.surname AS 'Employee surname', t3.position FROM banks t1
-JOIN employees t2
-ON t1.id = t2.bank_id
-JOIN positions t3
-ON t2.position_id = t3.id;
+-- SELECT * FROM users
+-- WHERE id > 3;
 
-SELECT t1.name, t1.surname, t2.phone, t2.salary FROM employees t1
-JOIN employee_info t2
-ON t1.id = t2.employee_id
+-- SELECT * FROM employees
+-- WHERE bank_id BETWEEN 2 AND 4;
+
+-- SELECT * FROM banks
+-- WHERE name LIKE '%o Bank';
+
+-- SELECT * FROM transactions
+-- WHERE amount > 5000;
+
+-- SELECT position_id, COUNT(id) AS '# of employees' FROM employees
+-- GROUP BY position_id
+-- ORDER BY position_id;
+
+
+
+-- SELECT t1.id, t1.name, t1.surname, t2.phone1, t2.phone2, t2.email FROM users t1
+-- JOIN contacts t2
+-- ON t1.contact_id = t2.id;
+
+-- SELECT t1.name AS 'Bank name', t2.name AS 'Employee name', t2.surname AS 'Employee surname', t3.position FROM banks t1
+-- JOIN employees t2
+-- ON t1.id = t2.bank_id
+-- JOIN positions t3
+-- ON t2.position_id = t3.id;
+
+-- SELECT t1.name, t1.surname, t2.phone, t2.salary FROM employees t1
+-- JOIN employee_info t2
+-- ON t1.id = t2.employee_id

@@ -1,5 +1,6 @@
 package com.solvd.bank.dao.jdbc.mysql;
 
+import com.solvd.bank.connections.AbstractMySqlDao;
 import com.solvd.bank.dao.IEmployeeInfoDao;
 import com.solvd.bank.models.EmployeeInfoModel;
 import org.apache.logging.log4j.LogManager;
