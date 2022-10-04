@@ -1,7 +1,7 @@
 package com.solvd.bank.PatternsTask.AbstractFactory;
 
 public class AbstractFactoryDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         AbstractFactory groundFactory = FactoryProducer.getFactory(true);
 
         Vehicle vehicle1 = groundFactory.getVehicle("car");

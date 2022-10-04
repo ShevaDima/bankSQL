@@ -1,7 +1,7 @@
 package com.solvd.bank.PatternsTask.Factory;
 
 public class FactoryDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         VehicleFactory vehicleFactory = new VehicleFactory();
 
         Vehicle vehicle1 = vehicleFactory.getVehicle("car");

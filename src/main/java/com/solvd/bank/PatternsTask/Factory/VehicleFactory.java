@@ -1,9 +1,9 @@
 package com.solvd.bank.PatternsTask.Factory;
 
 public class VehicleFactory {
-    public Vehicle getVehicle(String type) {
+    public Vehicle getVehicle(String type) throws Exception {
         if (type == null) {
-            return null;
+            throw new Exception("Null");
         }
         if (type.equalsIgnoreCase("car")) {
             return new Car();
@@ -15,6 +15,6 @@ public class VehicleFactory {
             return new Boat();
         }
 
-        return null;
+        throw new Exception("Null");
     }
 }
